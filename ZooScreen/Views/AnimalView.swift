@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct AnimalView: View {
-    var animal: Animal
+    @Binding var animal: Animal
+    var zooManager: ZooManager
 
     var body: some View {
         HStack {
@@ -16,9 +17,15 @@ struct AnimalView: View {
             Spacer()
         }
         .padding()
+        .contextMenu {
+            Button("Feed") { zooManager.perform(.feed, on: animal.id) }
+            Button("Play") { zooManager.perform(.play, on: animal.id) }
+            Button("Rest") { zooManager.perform(.rest, on: animal.id) }
+        }
     }
 }
 
 #Preview {
-    AnimalView(animal: .random(for: .monkey))
+    @State static var a = Animal.random(for: .monkey)
+    return AnimalView(animal: $a, zooManager: ZooManager())
 }
