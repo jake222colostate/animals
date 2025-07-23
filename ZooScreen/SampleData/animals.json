@@ -1,0 +1,5 @@
+[
+  {"species":"monkey","mood":"Happy","energy":80,"age":0},
+  {"species":"dog","mood":"Playful","energy":70,"age":0},
+  {"species":"cat","mood":"Sleepy","energy":60,"age":0}
+]

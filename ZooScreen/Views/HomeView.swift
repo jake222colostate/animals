@@ -5,13 +5,18 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            List(zooManager.animals) { animal in
-                AnimalView(animal: animal)
+            List($zooManager.animals) { $animal in
+                AnimalView(animal: $animal, zooManager: zooManager)
             }
             .navigationTitle("Zoo Screen")
+            .toolbar {
+                NavigationLink("Settings") {
+                    SettingsView()
+                }
+            }
         }
         .task {
-            MonkeyActivityController.shared.start()
+            ZooActivityController.shared.start(with: zooManager.animals)
         }
     }
 }
